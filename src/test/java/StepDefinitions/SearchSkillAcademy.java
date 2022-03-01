@@ -26,6 +26,8 @@ public class SearchSkillAcademy {
 	Random rand = new Random();
 	String keyword = "SMA";
 	int amount = 0;
+	int minPrice = 0;
+	int maxPrice = 0;
 	
 	@Given("User is on skillacademy homepage")
 	public void skilacademy_homepage() {
@@ -70,8 +72,8 @@ public class SearchSkillAcademy {
 		    ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@data-testid='pagination-per-page']"))
 		));
 		driver.findElement(By.xpath("//div[@data-testid='pagination-per-page']")).click();
-		List<Integer> listLanguage = Arrays.asList(10,20,50,100);
-		amount = listLanguage.get(rand.nextInt(listLanguage.size()));
+		List<Integer> listAmount = Arrays.asList(10,20,50,100);
+		amount = listAmount.get(rand.nextInt(listAmount.size()));
 		if (amount == 10) {
 			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'10')]")).click();
 		}
@@ -96,4 +98,48 @@ public class SearchSkillAcademy {
 		assertEquals(amount, course_element.size());
 	    driver.close();
 	}
+	
+	@When("User choose spesific price filter")
+	public void choose_price() {
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.or(
+		    ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Harga')]"))
+		));
+		driver.findElement(By.xpath("//div[contains(text(),'Harga')]")).click();
+		List<Integer> listPrice = Arrays.asList(1,2,3,4);
+		amount = listPrice.get(rand.nextInt(listPrice.size()));
+		if (amount == 1) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'<100.000')]")).click();
+			maxPrice = 99000;
+		}
+		if (amount == 2) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'100.000 - 149.999')]")).click();
+			minPrice = 100000;
+			maxPrice = 149000;
+		}
+		if (amount == 3) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'150.000 - 200.000')]")).click();
+			minPrice = 150000;
+			maxPrice = 200000;
+		}
+		if (amount == 4) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'>200.000')]")).click();
+			minPrice = 200001;
+			maxPrice = 99999999;
+		}
+	}
+	
+	@Then("User see the search results that match the price filter")
+	public void price_result_match() {
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.or(
+			ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@data-testid='price-final']"))
+		));
+		String displayedPrice = driver.findElement(By.xpath("//p[@data-testid='price-final']")).getText();
+		displayedPrice = displayedPrice.replace("Rp ","");
+		displayedPrice = displayedPrice.replace(".","");
+		assertTrue(minPrice <= Integer.parseInt(displayedPrice) && Integer.parseInt(displayedPrice) <= maxPrice);
+	    driver.close();
+	}
+	
 }
