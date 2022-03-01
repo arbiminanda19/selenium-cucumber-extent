@@ -1,0 +1,101 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "start_timestamp": "2022-03-01T15:47:20.450Z",
+        "line": 36,
+        "name": "User search spesific keyword with implement duration filter",
+        "description": "",
+        "id": "search-in-skillacademy-web;user-search-spesific-keyword-with-implement-duration-filter",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 76133962300,
+              "status": "passed"
+            },
+            "line": 37,
+            "name": "User is on skillacademy homepage",
+            "match": {
+              "location": "StepDefinitions.SearchSkillAcademy.skilacademy_homepage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 458723000,
+              "status": "passed"
+            },
+            "line": 38,
+            "name": "User fill search keyword",
+            "match": {
+              "location": "StepDefinitions.SearchSkillAcademy.fill_search_keyword()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 284161700,
+              "status": "passed"
+            },
+            "line": 39,
+            "name": "User click search button",
+            "match": {
+              "location": "StepDefinitions.SearchSkillAcademy.click_search()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 5147509400,
+              "status": "passed"
+            },
+            "line": 40,
+            "name": "User choose spesific duration filter",
+            "match": {
+              "location": "StepDefinitions.SearchSkillAcademy.choose_duration()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 12284621200,
+              "status": "passed"
+            },
+            "line": 41,
+            "name": "User see the new search result page loaded with duration filter",
+            "match": {
+              "location": "StepDefinitions.SearchSkillAcademy.verify_duration_filter_page()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@All"
+          },
+          {
+            "name": "@Test5"
+          }
+        ]
+      }
+    ],
+    "name": "Search in SkillAcademy Web",
+    "description": "",
+    "id": "search-in-skillacademy-web",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/Feature/SearchSkillAcademy.feature",
+    "tags": [
+      {
+        "name": "@All",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 1
+        }
+      }
+    ]
+  }
+]

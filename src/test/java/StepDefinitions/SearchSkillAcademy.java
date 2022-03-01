@@ -24,11 +24,12 @@ public class SearchSkillAcademy {
 
 	WebDriver driver = null;
 	Random rand = new Random();
-	String keyword = "SMA";
+	String keyword = "SMP";
 	int amount = 0;
 	int minPrice = 0;
 	int maxPrice = 0;
-	int sortType = 0; 
+	int sortType = 0;
+	int duration = 0;
 	
 	@Given("User is on skillacademy homepage")
 	public void skilacademy_homepage() {
@@ -199,6 +200,41 @@ public class SearchSkillAcademy {
 		if (sortType == 5) {
 			assertTrue(Integer.parseInt(firstPrice) >= Integer.parseInt(secondPrice));
 		}
+		driver.close();
+	}
+	
+	@When("User choose spesific duration filter")
+	public void choose_duration() {
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.or(
+		    ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Durasi')]"))
+		));
+		driver.findElement(By.xpath("//div[contains(text(),'Durasi')]")).click();
+		List<Integer> listDuration = Arrays.asList(1,2,3,4);
+		duration = listDuration.get(rand.nextInt(listDuration.size()));
+		if (duration == 1) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'<1 jam')]")).click();
+		}
+		if (duration == 2) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'1-2 jam')]")).click();
+		}
+		if (duration == 3) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'2-3 jam')]")).click();
+		}
+		if (duration == 4) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'>3 jam')]")).click();
+		}
+	}
+	
+	@Then("User see the new search result page loaded with duration filter")
+	public void verify_duration_filter_page() {
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.or(
+			ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@data-testid='course-image']"))
+		));
+		String url = driver.getCurrentUrl();
+		char durationInURL = url.charAt(url.length()-1);
+		assertTrue(duration == Integer.parseInt(String.valueOf(durationInURL)));
 		driver.close();
 	}
 	
