@@ -28,6 +28,7 @@ public class SearchSkillAcademy {
 	int amount = 0;
 	int minPrice = 0;
 	int maxPrice = 0;
+	int sortType = 0; 
 	
 	@Given("User is on skillacademy homepage")
 	public void skilacademy_homepage() {
@@ -140,6 +141,65 @@ public class SearchSkillAcademy {
 		displayedPrice = displayedPrice.replace(".","");
 		assertTrue(minPrice <= Integer.parseInt(displayedPrice) && Integer.parseInt(displayedPrice) <= maxPrice);
 	    driver.close();
+	}
+	
+	@When("User choose spesific sort type")
+	public void choose_sort() {
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.or(
+		    ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Pilih')]"))
+		));
+		driver.findElement(By.xpath("//div[contains(text(),'Pilih')]")).click();
+		List<Integer> listSort = Arrays.asList(1,2,4,5);
+		sortType = listSort.get(rand.nextInt(listSort.size()));
+		if (sortType == 1) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'Rating Tertinggi')]")).click();
+		}
+		if (sortType == 2) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'Review Terbanyak')]")).click();
+		}
+		if (sortType == 4) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'Harga Terendah')]")).click();
+		}
+		if (sortType == 5) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'Harga Tertinggi')]")).click();
+		}
+	}
+	
+	@Then("User see the new search result page loaded with sort type chosen")
+	public void sort_match() {
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.or(
+			ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@data-testid='price-final']"))
+		));
+		List<WebElement> displayedPrice = driver.findElements(By.xpath("//p[@data-testid='price-final']"));
+		String firstPrice = displayedPrice.get(0).getText();
+		firstPrice = firstPrice.replace("Rp ","");
+		firstPrice = firstPrice.replace(".","");
+		String secondPrice = displayedPrice.get(0).getText();
+		secondPrice = secondPrice.replace("Rp ","");
+		secondPrice = secondPrice.replace(".","");
+		if (sortType == 1) {
+			List<WebElement> rating = driver.findElements(By.xpath("//span[@data-testid='rating-text']"));
+			float firstRating = Float.parseFloat(rating.get(0).getText());
+			float secondRating = Float.parseFloat(rating.get(1).getText());
+			assertTrue(firstRating >= secondRating);
+		}
+		if (sortType == 2) {
+			List<WebElement> review = driver.findElements(By.xpath("//span[@data-testid='rating-count']"));
+			String firstReview = review.get(0).getText();
+			firstReview = firstReview.replaceAll("[^0-9]", "");
+			String secondReview = review.get(1).getText();
+			secondReview = secondReview.replaceAll("[^0-9]", "");
+			assertTrue(Float.parseFloat(firstReview) >= Float.parseFloat(secondReview));
+		}
+		if (sortType == 4) {
+			assertTrue(Integer.parseInt(firstPrice) <= Integer.parseInt(secondPrice));
+		}
+		if (sortType == 5) {
+			assertTrue(Integer.parseInt(firstPrice) >= Integer.parseInt(secondPrice));
+		}
+		driver.close();
 	}
 	
 }
