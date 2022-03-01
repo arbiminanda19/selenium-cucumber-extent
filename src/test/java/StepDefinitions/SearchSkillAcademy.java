@@ -151,13 +151,16 @@ public class SearchSkillAcademy {
 		    ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Pilih')]"))
 		));
 		driver.findElement(By.xpath("//div[contains(text(),'Pilih')]")).click();
-		List<Integer> listSort = Arrays.asList(1,2,4,5);
+		List<Integer> listSort = Arrays.asList(1,2,3,4,5);
 		sortType = listSort.get(rand.nextInt(listSort.size()));
 		if (sortType == 1) {
 			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'Rating Tertinggi')]")).click();
 		}
 		if (sortType == 2) {
 			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'Review Terbanyak')]")).click();
+		}
+		if (sortType == 3) {
+			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'Terbaru')]")).click();
 		}
 		if (sortType == 4) {
 			driver.findElement(By.xpath("//div[@tabindex='-1'][contains(text(),'Harga Terendah')]")).click();
@@ -193,6 +196,10 @@ public class SearchSkillAcademy {
 			String secondReview = review.get(1).getText();
 			secondReview = secondReview.replaceAll("[^0-9]", "");
 			assertTrue(Float.parseFloat(firstReview) >= Float.parseFloat(secondReview));
+		}
+		if (sortType == 3) {
+			String url = driver.getCurrentUrl();
+			assertTrue(url.contains("sortBy=latest"));
 		}
 		if (sortType == 4) {
 			assertTrue(Integer.parseInt(firstPrice) <= Integer.parseInt(secondPrice));

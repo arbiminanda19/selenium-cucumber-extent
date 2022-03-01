@@ -3,20 +3,20 @@
     "line": 2,
     "elements": [
       {
-        "start_timestamp": "2022-03-01T15:47:20.450Z",
-        "line": 36,
-        "name": "User search spesific keyword with implement duration filter",
+        "start_timestamp": "2022-03-01T15:55:26.317Z",
+        "line": 28,
+        "name": "User search spesific keyword with implement sort result",
         "description": "",
-        "id": "search-in-skillacademy-web;user-search-spesific-keyword-with-implement-duration-filter",
+        "id": "search-in-skillacademy-web;user-search-spesific-keyword-with-implement-sort-result",
         "type": "scenario",
         "keyword": "Scenario",
         "steps": [
           {
             "result": {
-              "duration": 76133962300,
+              "duration": 52944254500,
               "status": "passed"
             },
-            "line": 37,
+            "line": 29,
             "name": "User is on skillacademy homepage",
             "match": {
               "location": "StepDefinitions.SearchSkillAcademy.skilacademy_homepage()"
@@ -25,10 +25,10 @@
           },
           {
             "result": {
-              "duration": 458723000,
+              "duration": 345583200,
               "status": "passed"
             },
-            "line": 38,
+            "line": 30,
             "name": "User fill search keyword",
             "match": {
               "location": "StepDefinitions.SearchSkillAcademy.fill_search_keyword()"
@@ -37,10 +37,10 @@
           },
           {
             "result": {
-              "duration": 284161700,
+              "duration": 147566700,
               "status": "passed"
             },
-            "line": 39,
+            "line": 31,
             "name": "User click search button",
             "match": {
               "location": "StepDefinitions.SearchSkillAcademy.click_search()"
@@ -49,25 +49,25 @@
           },
           {
             "result": {
-              "duration": 5147509400,
+              "duration": 3407707900,
               "status": "passed"
             },
-            "line": 40,
-            "name": "User choose spesific duration filter",
+            "line": 32,
+            "name": "User choose spesific sort type",
             "match": {
-              "location": "StepDefinitions.SearchSkillAcademy.choose_duration()"
+              "location": "StepDefinitions.SearchSkillAcademy.choose_sort()"
             },
             "keyword": "When "
           },
           {
             "result": {
-              "duration": 12284621200,
+              "duration": 8822300800,
               "status": "passed"
             },
-            "line": 41,
-            "name": "User see the new search result page loaded with duration filter",
+            "line": 33,
+            "name": "User see the new search result page loaded with sort type chosen",
             "match": {
-              "location": "StepDefinitions.SearchSkillAcademy.verify_duration_filter_page()"
+              "location": "StepDefinitions.SearchSkillAcademy.sort_match()"
             },
             "keyword": "Then "
           }
@@ -77,7 +77,7 @@
             "name": "@All"
           },
           {
-            "name": "@Test5"
+            "name": "@Test4"
           }
         ]
       }

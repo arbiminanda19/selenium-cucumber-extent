@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="95.655">
-    <testcase classname="Search in SkillAcademy Web" name="User search spesific keyword with implement duration filter" time="95.072">
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="66.537">
+    <testcase classname="Search in SkillAcademy Web" name="User search spesific keyword with implement sort result" time="66.097">
         <system-out><![CDATA[Given User is on skillacademy homepage......................................passed
 When User fill search keyword...............................................passed
 And User click search button................................................passed
-When User choose spesific duration filter...................................passed
-Then User see the new search result page loaded with duration filter........passed
+When User choose spesific sort type.........................................passed
+Then User see the new search result page loaded with sort type chosen.......passed
 ]]></system-out>
     </testcase>
 </testsuite>
