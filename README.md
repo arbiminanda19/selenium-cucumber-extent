@@ -10,8 +10,8 @@ Tools Used: Maven, Java, Selenium, Cucumber, Gherkin, JUnit, Extent Report
 ```
 {YourProjectPath}/src/test/resources/drivers/chromedriver.exe
 ```
-* In this repository, there is a OrderSauceDemo.feature file that consists of:
-	* Scenario: Order Journey in SauceDemo
+* In this repository, there is a SearchSkillAcademy.feature file that consists of:
+	* Scenario: 
 * You can run this testing by running TestRunner file using JUnit, the directory of TestRunner is:
 ```
 {YourProjectPath}/src/test/java/TestRunner
@@ -20,7 +20,3 @@ Tools Used: Maven, Java, Selenium, Cucumber, Gherkin, JUnit, Extent Report
 ```
 {YourProjectPath}/target
 ```
-
-# Record of run result
-
-* [Scenario : Order Journey Sauce Demo](https://drive.google.com/file/d/1v2bbz41fAzX1lYZqMyMLzN7WygXmtDCO/view?usp=sharing)
